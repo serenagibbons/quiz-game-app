@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:label="@string/app_name"
-        android:icon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/quiz_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
