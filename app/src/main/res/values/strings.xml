@@ -1,4 +1,16 @@
 <resources>
-    <string name="app_name">Quizr</string>
+    <string name="app_name">Quizzr</string>
     <string name="image_desc">Logo image</string>
+
+    <string name="promptRegister">Don\'t have an account?</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+
+
+    <!--- button labels -->
+    <string name="label_reg">Register</string>
+    <string name="label_login">Log in </string>
+
+    <!--- toasts -->
+    <string name="toast_logFields">You must complete all fields to log in</string>
 </resources>
