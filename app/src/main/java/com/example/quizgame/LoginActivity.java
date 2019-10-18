@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText e1, e2;
+    private EditText e1, e2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +41,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToRegistration(View view) {
+        startActivity(new Intent(this, RegistrationActivity.class));
     }
 }

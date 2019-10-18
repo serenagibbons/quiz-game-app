@@ -2,15 +2,28 @@
     <string name="app_name">Quizzr</string>
     <string name="image_desc">Logo image</string>
 
+    <!--- prompts -->
     <string name="promptRegister">Don\'t have an account?</string>
-    <string name="password">Password</string>
-    <string name="email">Email</string>
+    <string name="promptLogIn">Already have an account?</string>
 
-
-    <!--- button labels -->
+    <!--- labels -->
     <string name="label_reg">Register</string>
     <string name="label_login">Log in </string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="email">Email</string>
+    <string name="dob">Date of Birth</string>
+    <string name="dobFormat">MM/dd/yy</string>
+    <string name="password">Password</string>
 
     <!--- toasts -->
+    <string name="toast_regFields">You must complete all fields to register</string>
     <string name="toast_logFields">You must complete all fields to log in</string>
+    <string name="toast_valid">Invalid data entered</string>
+    <string name="toast_name">First name must be 3 to 30 characters</string>
+    <string name="toast_email">Invalid email address</string>
+    <string name="toast_login">Invalid email and password combination</string>
+    <string name="toast_success">You have successfully registered</string>
+    <string name="toast_date">Invalid date of birth, date should be in the format MM/dd/yy</string>
+
 </resources>
