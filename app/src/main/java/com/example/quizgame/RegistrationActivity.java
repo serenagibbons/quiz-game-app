@@ -3,6 +3,7 @@ package com.example.quizgame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private boolean valid = true;
     private EditText e1, e2, e3, e4, e5;
     private String fName, lName, dob, email, pass;
+    private final String FILE = "UserData";
 
 
     @Override
@@ -42,7 +44,6 @@ public class RegistrationActivity extends AppCompatActivity {
             return;
         }
 
-
         // set variables using user's input
         fName = e1.getText().toString();
         lName = e2.getText().toString();
@@ -56,19 +57,22 @@ public class RegistrationActivity extends AppCompatActivity {
         // if any fields have incorrect input, display toast
         if (!valid) {
             Toast.makeText(this, getResources().getString(R.string.toast_valid), Toast.LENGTH_LONG).show();
-            //return;
+            return;
         }
- /*
-        // create new intent and send data to the LoginActivity
+
+        SharedPreferences sharedPref = getSharedPreferences(FILE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("First Name", fName);
+        editor.putString("Last Name", lName);
+        editor.putString("Date of Birth", dob);
+        editor.putString("Email", email);
+        editor.putString("Password", pass);
+        editor.apply();
+
+        // create new intent
         Intent intent = new Intent(this, LoginActivity.class);
-        intent.putExtra("First Name", fName);
-        intent.putExtra("Last Name", lName);
-        intent.putExtra("Date of Birth", dob);
-        intent.putExtra("Email", email);
-        intent.putExtra("Password", pass);
-        intent.putExtra("Success", true);
+        intent.putExtra("Success", valid);
         startActivity(intent);
-        */
     }
 
     public boolean validateInput() {
