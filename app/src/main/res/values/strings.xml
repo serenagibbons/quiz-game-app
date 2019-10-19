@@ -5,10 +5,17 @@
     <!--- prompts -->
     <string name="promptRegister">Don\'t have an account?</string>
     <string name="promptLogIn">Already have an account?</string>
+    <string name="promptPlay">Ready to play?</string>
+
+    <!-- instructions -->
+    <string name="instructions">Try to beat the quiz by answering all of the questions.
+    For each question answered correctly you earn 1 point. Try to beat your previous scores and times.</string>
 
     <!--- labels -->
     <string name="label_reg">Register</string>
     <string name="label_login">Log in </string>
+    <string name="play">Play</string>
+    <string name="history">View history</string>
     <string name="firstName">First Name</string>
     <string name="lastName">Last Name</string>
     <string name="email">Email</string>
