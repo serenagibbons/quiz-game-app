@@ -4,36 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/quiz_background_slider"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textReady"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:text="@string/promptPlay"
-        android:textSize="30sp"
         android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:background="@color/white"
+        android:paddingTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.307" />
+
+    <TextView
+        android:id="@+id/textInstructions"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/instructions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356" />
-
-    <TextView
-        android:id="@+id/textInstructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/instructions"
-        android:paddingRight="60dp"
-        android:paddingLeft="60dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textReady"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0" />
 
     <Button
         android:id="@+id/btnPlay"
@@ -47,7 +54,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textInstructions"
         app:layout_constraintVertical_bias="0.637"
         android:background="@color/colorPrimaryDark"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:onClick="goToGame"/>
 
     <Button
         android:id="@+id/btnHistory"
@@ -60,6 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInstructions"
         app:layout_constraintVertical_bias="0.448"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorAccent"
+        android:onClick="goToHistory"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

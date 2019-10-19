@@ -70,6 +70,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimaryDark"
         android:onClick="logIn"/>
 
     <TextView
@@ -84,6 +86,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/label_reg"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimaryDark"
         android:onClick="goToRegistration"/>
 
 </LinearLayout>
