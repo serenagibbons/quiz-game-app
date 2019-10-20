@@ -22,6 +22,7 @@
     <string name="dob">Date of Birth</string>
     <string name="dobFormat">MM/dd/yy</string>
     <string name="password">Password</string>
+    <string name="question_number">Question %d</string>
 
     <!--- toasts -->
     <string name="toast_regFields">You must complete all fields to register</string>
