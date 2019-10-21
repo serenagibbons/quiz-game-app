@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -161,7 +163,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void saveScore(int score) {
-        String s = score + "\n";
+        // get date and time
+        Date dateTime = Calendar.getInstance().getTime();
+
+        // save score to file ScoreHistory
+        String s = dateTime + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tScore: " + score + "\n";
         FileOutputStream fos = null;
         try {
             fos = openFileOutput(FILENAME, MODE_APPEND);

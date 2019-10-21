@@ -8,6 +8,7 @@
     android:paddingLeft="16dp"
     android:paddingBottom="16dp"
     android:paddingTop="16dp"
+    android:background="@drawable/quiz_background_slider"
     tools:context=".GameActivity">
 
     <TextView
@@ -16,7 +17,8 @@
         android:textColor="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/white"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
     </TextView>
@@ -27,6 +29,7 @@
         android:layout_below="@id/txtNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:paddingTop="32dp"
         android:paddingBottom="32dp"
         android:layout_centerHorizontal="true">
@@ -34,34 +37,46 @@
 
     <Button
         android:id="@+id/btnAns1"
+        android:layout_marginTop="32dp"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_below="@id/txtQues"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white">
     </Button>
 
     <Button
         android:id="@+id/btnAns2"
+        android:layout_marginTop="8dp"
         android:layout_below="@id/btnAns1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white">
     </Button>
 
     <Button
         android:id="@+id/btnAns3"
+        android:layout_marginTop="8dp"
         android:layout_below="@id/btnAns2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white">
     </Button>
 
     <Button
         android:id="@+id/btnAns4"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_below="@id/btnAns3"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white">
     </Button>
 
 </RelativeLayout>
