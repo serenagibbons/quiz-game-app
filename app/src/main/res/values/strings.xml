@@ -23,6 +23,7 @@
     <string name="dobFormat">MM/dd/yy</string>
     <string name="password">Password</string>
     <string name="question_number">Question %d</string>
+    <string name="label_history">History</string>
 
     <!--- toasts -->
     <string name="toast_regFields">You must complete all fields to register</string>

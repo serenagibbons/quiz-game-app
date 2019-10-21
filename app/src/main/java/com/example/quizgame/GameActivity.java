@@ -10,10 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class GameActivity extends AppCompatActivity {
 
     private Button answer1, answer2, answer3, answer4;
     private TextView quesNumber, question;
+    private final String FILENAME = "ScoreHistory";
 
     private int num = 1;
     private int score = 0;
@@ -116,8 +120,9 @@ public class GameActivity extends AppCompatActivity {
                         if (num < questions.length) {
                             nextQuestion(++num);
                         }
-                        // else game is over, show score
+                        // else game is over, show score and save to history
                         else {
+                            saveScore(score);
                             gameOver();
                         }
                     }
@@ -153,5 +158,27 @@ public class GameActivity extends AppCompatActivity {
                 });
         AlertDialog alert = adb.create();
         alert.show();
+    }
+
+    public void saveScore(int score) {
+        String s = score + "\n";
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput(FILENAME, MODE_APPEND);
+            fos.write(s.getBytes());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (fos != null) {
+                    fos.close();
+                }
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
