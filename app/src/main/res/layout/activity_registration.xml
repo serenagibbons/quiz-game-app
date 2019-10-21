@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:id="@+id/scrollView"
+    android:background="@drawable/quiz_background_slider_flipped"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -22,6 +23,7 @@
             android:text="@string/label_reg"
             android:textSize="20sp"
             android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -31,6 +33,7 @@
 
         <TextView
             android:id="@+id/fNameLabel"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/firstName" />
@@ -51,6 +54,7 @@
 
         <TextView
             android:id="@+id/lNameLabel"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lastName" />
@@ -71,6 +75,7 @@
 
         <TextView
             android:id="@+id/DOBLabel"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dob" />
@@ -91,6 +96,7 @@
 
         <TextView
             android:id="@+id/emailLabel"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/email" />
@@ -111,6 +117,7 @@
 
         <TextView
             android:id="@+id/passwordLabel"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/password" />

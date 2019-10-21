@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="50dp"
+    android:background="@drawable/quiz_background_slider_flipped"
     tools:context=".LoginActivity">
 
     <!-- Login in label -->
@@ -16,6 +17,7 @@
         android:layout_height="160dp"
         android:text="@string/label_login"
         android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +30,9 @@
         android:id="@+id/textLoginEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/email" />
+        android:text="@string/email"
+        android:textColor="@color/colorPrimaryDark"
+        />
 
     <EditText
         android:id="@+id/edtLoginEmail"
@@ -45,6 +49,7 @@
 
     <TextView
         android:id="@+id/textLoginPassword"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/password" />
