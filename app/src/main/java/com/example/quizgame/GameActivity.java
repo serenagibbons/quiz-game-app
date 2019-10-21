@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.io.FileOutputStream;
@@ -17,6 +19,7 @@ import java.util.Date;
 
 public class GameActivity extends AppCompatActivity {
 
+    private Chronometer timer;
     private Button answer1, answer2, answer3, answer4;
     private TextView quesNumber, question;
     private final String FILENAME = "ScoreHistory";
@@ -24,6 +27,9 @@ public class GameActivity extends AppCompatActivity {
     private int num = 1;
     private int score = 0;
     private String answer = "";
+    private boolean resume = true;
+    private long elapsedTime;
+    private String strTime = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,30 @@ public class GameActivity extends AppCompatActivity {
         quesNumber= findViewById(R.id.txtNum);
         question = findViewById(R.id.txtQues);
 
+        timer = findViewById(R.id.cmTimer);
+
         nextQuestion(num);
+        timer.setBase(SystemClock.elapsedRealtime());
+        timer.start();
+
+        // timer handler
+        timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                if (resume) {
+                    long minutes = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)/60;
+                    long seconds = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)%60;
+                    elapsedTime = SystemClock.elapsedRealtime();
+                    strTime = minutes + ":" + seconds;
+                }
+                else {
+                    long minutes = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)/60;
+                    long seconds = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)%60;
+                    elapsedTime += 1000;
+                    strTime = minutes + ":" + seconds;
+                }
+            }
+        });
 
         // button handlers
         answer1.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +153,7 @@ public class GameActivity extends AppCompatActivity {
                         }
                         // else game is over, show score and save to history
                         else {
+                            timer.stop();
                             saveScore(score);
                             gameOver();
                         }
@@ -142,7 +172,9 @@ public class GameActivity extends AppCompatActivity {
     public void gameOver() {
         AlertDialog.Builder adb = new AlertDialog.Builder(GameActivity.this);
         // show user score
-        adb.setMessage("Game over! Your score is " + score + "/" + questions.length + ".")
+        adb.setMessage("Game over!\n" +
+                "Your score is " + score + "/" + questions.length + (".\n" +
+                "Your time is " + strTime))
                 .setCancelable(false)
                 // allow user to play game again, restart GameActivity
                 .setPositiveButton("Play again", new DialogInterface.OnClickListener() {
@@ -167,7 +199,9 @@ public class GameActivity extends AppCompatActivity {
         Date dateTime = Calendar.getInstance().getTime();
 
         // save score to file ScoreHistory
-        String s = dateTime + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tScore: " + score + "\n";
+        String s = dateTime +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tScore: " + score +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTime: " + strTime + "\n";
         FileOutputStream fos = null;
         try {
             fos = openFileOutput(FILENAME, MODE_APPEND);

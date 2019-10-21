@@ -11,6 +11,13 @@
     android:background="@drawable/quiz_background_slider"
     tools:context=".GameActivity">
 
+    <Chronometer
+        android:id="@+id/cmTimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+    </Chronometer>
+
     <TextView
         android:id="@+id/txtNum"
         android:textSize="20sp"
