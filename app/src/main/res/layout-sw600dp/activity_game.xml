@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:background="@drawable/quiz_background_slider"
+    tools:context=".GameActivity">
+
+    <Chronometer
+        android:id="@+id/cmTimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+    </Chronometer>
+
+    <TextView
+        android:id="@+id/txtNum"
+        android:textSize="32sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:background="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtQues"
+        android:textSize="20sp"
+        android:layout_below="@id/txtNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="64dp"
+        android:paddingBottom="32dp"
+        android:layout_centerHorizontal="true">
+    </TextView>
+
+    <Button
+        android:id="@+id/btnAns1"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtQues"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white">
+    </Button>
+
+    <Button
+        android:id="@+id/btnAns2"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/btnAns1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white">
+    </Button>
+
+    <Button
+        android:id="@+id/btnAns3"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/btnAns2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white">
+    </Button>
+
+    <Button
+        android:id="@+id/btnAns4"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAns3"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white">
+    </Button>
+
+    <CheckBox
+        android:id="@+id/checkbox1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtQues"
+        android:textSize="16sp"
+        android:layout_marginTop="32dp"
+        android:visibility="invisible">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/checkbox2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAns1"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:visibility="invisible">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/checkbox3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAns2"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:visibility="invisible">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/checkbox4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAns3"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:visibility="invisible">
+    </CheckBox>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:text="@string/submit"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAns4"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:visibility="invisible">
+    </Button>
+
+</RelativeLayout>
