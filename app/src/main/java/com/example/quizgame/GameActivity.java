@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
@@ -20,15 +21,14 @@ import java.util.Date;
 public class GameActivity extends AppCompatActivity {
 
     private Chronometer timer;
-    private Button answer1, answer2, answer3, answer4;
+    private Button answer1, answer2, answer3, answer4, submit;
+    private CheckBox check1, check2, check3, check4;
     private TextView quesNumber, question;
     private final String FILENAME = "ScoreHistory";
 
     private int num = 1;
     private int score = 0;
     private String answer = "";
-    private boolean resume = true;
-    private long elapsedTime;
     private String strTime = "";
 
     @Override
@@ -41,11 +41,19 @@ public class GameActivity extends AppCompatActivity {
         answer3 = findViewById(R.id.btnAns3);
         answer4 = findViewById(R.id.btnAns4);
 
+        check1 = findViewById(R.id.checkbox1);
+        check2 = findViewById(R.id.checkbox2);
+        check3 = findViewById(R.id.checkbox3);
+        check4 = findViewById(R.id.checkbox4);
+
         quesNumber= findViewById(R.id.txtNum);
         question = findViewById(R.id.txtQues);
 
+        submit = findViewById(R.id.btnSubmit);
+
         timer = findViewById(R.id.cmTimer);
 
+        // display questions/answers and start timer
         nextQuestion(num);
         timer.setBase(SystemClock.elapsedRealtime());
         timer.start();
@@ -54,22 +62,76 @@ public class GameActivity extends AppCompatActivity {
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
-                if (resume) {
-                    long minutes = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)/60;
-                    long seconds = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)%60;
-                    elapsedTime = SystemClock.elapsedRealtime();
-                    strTime = minutes + ":" + seconds;
-                }
-                else {
-                    long minutes = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)/60;
-                    long seconds = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)%60;
-                    elapsedTime += 1000;
-                    strTime = minutes + ":" + seconds;
-                }
-            }
+                long minutes = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)/60;
+                long seconds = ((SystemClock.elapsedRealtime()-timer.getBase())/1000)%60;
+                strTime = minutes + ":" + seconds;
+             }
         });
 
         // button handlers
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String[] s = {"","","",""};
+                StringBuilder selection = new StringBuilder();
+
+                if (check1.isChecked()) {
+                    s[0] = check1.getText().toString();
+                }
+                if (check2.isChecked()) {
+                    s[1] = check2.getText().toString();
+                }
+                if (check3.isChecked()) {
+                    s[2] = check3.getText().toString();
+                }
+                if (check4.isChecked()) {
+                    s[3] = check4.getText().toString();
+                }
+
+                for (int i = 0; i < 4; ++i) {
+                    if (!s[i].isEmpty()) {
+                        if (selection.length() == 0) {
+                            selection.append(" ");
+                            selection.append(s[i]);
+                        }
+                        else {
+                            selection.append(" and ");
+                            selection.append(s[i]);
+                        }
+                    }
+                }
+                AlertDialog.Builder adb = new AlertDialog.Builder(GameActivity.this);
+                adb.setMessage("You selected" + selection + ". Is this correct?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // if the user selects the correct answer, increment score
+                                if (!check1.isChecked() && check2.isChecked() && check3.isChecked() && !check4.isChecked()) {
+                                    ++score;
+                                }
+                                // if there are more questions, go to next question
+                                if (num < questions.length) {
+                                    nextQuestion(++num);
+                                }
+                                // else game is over, show score and save to history
+                                else {
+                                    timer.stop();
+                                    saveScore(score);
+                                    gameOver();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // do nothing (return)
+                            }
+                        });
+                AlertDialog alert = adb.create();
+                alert.show();
+            }
+        });
         answer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +159,8 @@ public class GameActivity extends AppCompatActivity {
                 confirmAnswer(answer4.getText().toString());
             }
         });
+
+
     }
 
     // question strings
@@ -105,7 +169,13 @@ public class GameActivity extends AppCompatActivity {
             "In the final stretch of a race, you run by the person who is in second place, what place are you in?",
             "How many of each kind of animal did Moses take on the ark?",
             "On average, how many birthdays does a man have?",
-            "If you write all the numbers from 300 to 400, how many times you have to write the number 3?"
+            "If you write all the numbers from 300 to 400, how many times do you have to write the number 3?",
+            "The letters A, B, C, D, E, F, and G, stand for seven consecutive integers from 1 to 7 (not necessarily in that order).\n" +
+                    "D is 3 less than A\n" +
+                    "B is the middle term\n" +
+                    "F is as much less than B as C is greater than D\n" +
+                    "G is greater than F\n" +
+                    "Select the true statements."
     };
 
     // button answer choices
@@ -114,26 +184,55 @@ public class GameActivity extends AppCompatActivity {
             {"first", "second", "third", "fourth"},
             {"0", "1", "2", "3"},
             {"72", "50", "1", "65"},
-            {"100", "110", "119", "120"}
+            {"100", "110", "119", "120"},
+            {"A = 5", "A = 6", "C = 5", "F = 1"}
     };
 
     // correct answer strings
-    private String[] correctAnswers = {
-            "once", "second", "0", "1", "120"
+    private String[][] correctAnswers = {
+            {"once"},
+            {"second"},
+            {"0"},
+            {"1"},{"120"},
+            {"A = 6","C = 5"}
     };
 
     // go to the next question
     public void nextQuestion(int n) {
         // update question number and text
         quesNumber.setText(String.format(getResources().getString(R.string.question_number), n));
-        question.setText(questions[n-1]);
-        // update answer buttons
-        answer1.setText((answerChoices[n-1][0]));
-        answer2.setText((answerChoices[n-1][1]));
-        answer3.setText((answerChoices[n-1][2]));
-        answer4.setText((answerChoices[n-1][3]));
-        // update correct answer
-        answer = correctAnswers[n-1];
+        question.setText(questions[n - 1]);
+
+        // show single-choice answers
+        if (n <= 5) {
+            // update answer buttons
+            answer1.setText((answerChoices[n - 1][0]));
+            answer2.setText((answerChoices[n - 1][1]));
+            answer3.setText((answerChoices[n - 1][2]));
+            answer4.setText((answerChoices[n - 1][3]));
+            // update correct answer
+            answer = correctAnswers[n - 1][0];
+        }
+        // show multiple-answer choices
+        else {
+            answer1.setVisibility(View.INVISIBLE);
+            answer2.setVisibility(View.INVISIBLE);
+            answer3.setVisibility(View.INVISIBLE);
+            answer4.setVisibility(View.INVISIBLE);
+
+            check1.setVisibility(View.VISIBLE);
+            check2.setVisibility(View.VISIBLE);
+            check3.setVisibility(View.VISIBLE);
+            check4.setVisibility(View.VISIBLE);
+
+            submit.setVisibility(View.VISIBLE);
+
+            check1.setText((answerChoices[n - 1])[0]);
+            check2.setText((answerChoices[n - 1])[1]);
+            check3.setText((answerChoices[n - 1])[2]);
+            check4.setText((answerChoices[n - 1])[3]);
+
+        }
     }
 
     public void confirmAnswer(final String selection) {
@@ -144,8 +243,10 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // if the user selects the correct answer, increment score
-                        if (selection.equals(answer)) {
-                            score++;
+                        if (num <= 5) {
+                            if (selection.equals(answer)) {
+                                score++;
+                            }
                         }
                         // if there are more questions, go to next question
                         if (num < questions.length) {

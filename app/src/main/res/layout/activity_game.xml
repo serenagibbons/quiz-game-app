@@ -46,7 +46,7 @@
         android:id="@+id/btnAns1"
         android:layout_marginTop="32dp"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/txtQues"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
@@ -79,11 +79,60 @@
         android:id="@+id/btnAns4"
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/btnAns3"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
         android:textColor="@color/white">
+    </Button>
+
+    <CheckBox
+        android:id="@+id/checkbox1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtQues"
+        android:layout_marginTop="32dp"
+        android:visibility="invisible">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/checkbox2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAns1"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/checkbox3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAns2"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/checkbox4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAns3"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible">
+    </CheckBox>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:text="@string/submit"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAns4"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:visibility="invisible">
     </Button>
 
 </RelativeLayout>
