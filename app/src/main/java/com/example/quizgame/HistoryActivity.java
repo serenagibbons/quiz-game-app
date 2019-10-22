@@ -3,13 +3,11 @@ package com.example.quizgame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.AndroidException;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -39,6 +37,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     // load previous scores from ScoreHistory file
     public void loadScores() {
+        ArrayList<String> tempList = new ArrayList<>();
         FileInputStream fis = null;
         try {
             fis = openFileInput(FILENAME);
@@ -46,7 +45,7 @@ public class HistoryActivity extends AppCompatActivity {
             BufferedReader br = new BufferedReader(isr);
             String text;
             while ((text = br.readLine()) != null) {
-                scores.add(text);
+                tempList.add(text);
             }
         }
         catch (IOException e) {
@@ -60,6 +59,10 @@ public class HistoryActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+        }
+
+        for (int i = tempList.size()-1; i >=0; --i) {
+            scores.add(tempList.get(i));
         }
     }
 }
