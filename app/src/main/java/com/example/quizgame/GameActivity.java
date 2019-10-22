@@ -165,11 +165,15 @@ public class GameActivity extends AppCompatActivity {
 
     // question strings
     private String[] questions = {
+            "A man looks at a portrait and says, " +
+                    "\"Brothers and sisters, I have none.  But that man's father is my father's son.\"" +
+                    "  What is the relationship of the man in the portrait to the speaker?",
             "How many times can you subtract 10 from 100?",
             "In the final stretch of a race, you run by the person who is in second place, what place are you in?",
             "How many of each kind of animal did Moses take on the ark?",
             "On average, how many birthdays does a man have?",
             "If you write all the numbers from 300 to 400, how many times do you have to write the number 3?",
+            "Someone at a party introduces you to your mother's only sister's husband's sister in law. He has no brothers. What do you call this lady?",
             "The letters A, B, C, D, E, F, and G, stand for seven consecutive integers from 1 to 7 (not necessarily in that order).\n" +
                     "D is 3 less than A\n" +
                     "B is the middle term\n" +
@@ -180,20 +184,25 @@ public class GameActivity extends AppCompatActivity {
 
     // button answer choices
     private String [][] answerChoices = {
+            {"His father", "Himself", "His son", "His uncle"},
             {"10 times", "9 times", "once", "infinite times"},
             {"first", "second", "third", "fourth"},
             {"0", "1", "2", "3"},
             {"72", "50", "1", "65"},
             {"100", "110", "119", "120"},
+            {"Aunt", "Mother", "Sister-in-law", "Sister"},
             {"A = 5", "A = 6", "C = 5", "F = 1"}
     };
 
     // correct answer strings
     private String[][] correctAnswers = {
+            {"His son"},
             {"once"},
             {"second"},
             {"0"},
-            {"1"},{"120"},
+            {"1"},
+            {"120"},
+            {"Mother"},
             {"A = 6","C = 5"}
     };
 
@@ -204,7 +213,7 @@ public class GameActivity extends AppCompatActivity {
         question.setText(questions[n - 1]);
 
         // show single-choice answers
-        if (n <= 5) {
+        if (n <= 7) {
             // update answer buttons
             answer1.setText((answerChoices[n - 1][0]));
             answer2.setText((answerChoices[n - 1][1]));
@@ -243,7 +252,7 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // if the user selects the correct answer, increment score
-                        if (num <= 5) {
+                        if (num <= 7) {
                             if (selection.equals(answer)) {
                                 score++;
                             }
