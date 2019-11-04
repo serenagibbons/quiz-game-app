@@ -196,7 +196,7 @@ public class GameActivity extends AppCompatActivity {
 
     // correct answer strings
     private String[][] correctAnswers = {
-            {"His son"},
+            {"Himself"},
             {"once"},
             {"second"},
             {"0"},
